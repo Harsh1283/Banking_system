@@ -44,6 +44,13 @@ def setup_database():
         date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY(account_number) REFERENCES users(account_number)
     )''')
+    
+     # Create `login` table
+    cursor.execute('''CREATE TABLE IF NOT EXISTS login (
+        account_number VARCHAR(10) PRIMARY KEY,
+        password VARCHAR(255) NOT NULL,
+        FOREIGN KEY (account_number) REFERENCES users(account_number)
+    )''')
 
     conn.commit()
     conn.close()
